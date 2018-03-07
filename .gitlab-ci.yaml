@@ -1,0 +1,17 @@
+image: docker:latest
+
+stages:
+  - build
+  - deploy 
+
+build:
+  stage: build
+  script:
+    - docker build -t quay.io/vitaly/hass .
+    - docker push quay.io/vitaly/hass 
+
+deploy:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --stack Automation --service Home-assistant --environment Home --no-start-before-stopping

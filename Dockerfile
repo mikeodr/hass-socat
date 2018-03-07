@@ -8,7 +8,7 @@ RUN apt-get -y update && \
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     /usr/bin/python2.7 get-pip.py
 COPY pip2 /usr/local/bin/pip2
-RUN pip2 install supervisor
+RUN pip2 install supervisor requests datetime
 COPY supervisord.conf /etc/supervisord.conf
 COPY start_socat.sh /usr/local/bin/start_socat.sh
 CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisord.conf"]
