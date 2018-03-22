@@ -1,7 +1,7 @@
 FROM homeassistant/home-assistant:latest
 
 RUN apt-get -y update && \
-    apt-get -y install socat && \
+    apt-get -y install socat git && \
     rm -fr /var/lib/apt/lists/*
 
 # Supervisord v3.2+ needed, can only be installed with python 2.7, so some jumping around to get it. 

@@ -2,13 +2,18 @@ image: docker:latest
 
 stages:
   - build
-  - deploy 
+  - push
+  - deploy
 
 build:
   stage: build
   script:
-    - docker build -t quay.io/vitaly/hass .
-    - docker push quay.io/vitaly/hass 
+    - docker build --no-cache -t quay.io/vitaly/hass .
+
+push:
+  stage: push
+  script:
+    - docker push quay.io/vitaly/hass
 
 deploy:
   stage: deploy
